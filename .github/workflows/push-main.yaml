@@ -1,0 +1,29 @@
+name: Push to main
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  push:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    name: Push
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v3'
+      - name: 'Google auth'
+        id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' 
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+      - name: Describe
+        run: |
+          gcloud run service describe birthday --region=europe-central2-a
+      
+
+      

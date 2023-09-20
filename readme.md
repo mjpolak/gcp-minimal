@@ -43,6 +43,22 @@ Docker need for deployment machine
 1. Type `terraform init` to initialize state files.
 1. Type `terraform apply` to see plan, then type `yes` and confirm with enter to create infrastructure.
 
+### Getting outputs
+Use bellow snipet to get service URL and values used in github integration
+```
+terraform output app_url
+terraform output wif_provider_id
+terraform output wif_service_account_email
+```
+## Github Action integration
+
+To configure authentication of GitHub Actions in GCP two secrets needs to be set in Actions Secrets: https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository
+
+Below secrets are needed:
+
+- `WIF_PROVIDER` - value of terraform output `wif_provider_id`
+- `WIF_SERVICE_ACCOUNT`  value of terraform output `wif_service_account_email``
+
 
 # Local development
 
