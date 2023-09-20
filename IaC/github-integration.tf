@@ -18,7 +18,7 @@ resource "google_project_iam_member" "github_cloud_run" {
 
 resource "google_project_iam_member" "github_artifacts_repository" {
   project = var.project_id
-  role    = "roles/run.admin"
+  role    = "roles/artifactregistry.admin"
   member  = "serviceAccount:${google_service_account.github.email}"
 }
 
