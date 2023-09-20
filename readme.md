@@ -56,8 +56,8 @@ To configure authentication of GitHub Actions in GCP two secrets needs to be set
 
 Below secrets are needed:
 
-- `WIF_PROVIDER` - value of terraform output `wif_provider_id`
-- `WIF_SERVICE_ACCOUNT`  value of terraform output `wif_service_account_email``
+- `WIF_PROVIDER` - value of terraform output `wif_provider_id` from previous section
+- `WIF_SERVICE_ACCOUNT`  value of terraform output `wif_service_account_email` from previous section
 
 
 # Local development

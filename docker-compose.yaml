@@ -12,3 +12,10 @@ services:
     volumes:
       - ./IaC/:/opt/app/src:delegated
       - ./cert.json:/cert.json
+  app:
+    image: app
+    build:
+      context: ./app/
+    ports:
+      - "8080:8080"
+    

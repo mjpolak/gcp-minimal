@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+env:
+  APP: "birthday"
+  GAR_LOCATION: "europe-central2"
+  PROJECT_ID: "gcp-minimal"
 jobs:
   push:
     permissions:
@@ -21,9 +25,11 @@ jobs:
           service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
-      - name: Describe
+      - name: Authenticate docker
         run: |
-          gcloud run service describe birthday --region=europe-central2-a
+          gcloud auth configure-docker "${{ env.GAR_LOCATION }}-docker.pkg.dev" && \
+          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:develop" ./app && \
+          docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:develop"
       
 
       
