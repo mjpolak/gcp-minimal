@@ -3,7 +3,8 @@ output "app_url" {
 }
 
 output "wif_provider_id" {
-  value = google_iam_workload_identity_pool_provider.github.id
+  # value = google_iam_workload_identity_pool_provider.github.id
+  value = "${google_iam_workload_identity_pool.github.name}/providers/${google_iam_workload_identity_pool_provider.github.workload_identity_pool_provider_id}"
   sensitive = true
 }
 
