@@ -15,9 +15,15 @@ Docker need for deployment machine
 
 # Preparing infrastructure
 
-## Preparing GCP project
+## Setup project
 
  1. Create project on https://console.cloud.google.com/projectcreate it need to be unique across GCP
+ 1. Create github fork of this repository to be able use GitHub Actions on your account.
+ 1. Copy `.env.template` and rename it to `.env`
+   1. Fill `TF_VAR_project_id`  with id created project.
+   1. Fill `TF_VAR_github_owner`  with name of your user/org on github.
+   1. Fill `TF_VAR_github_repo`  with name of repository
+ 1. Follow instructions on https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project to add billing account to project, it is required to create new resources.
  1. Generate certificate to authenticate terraform
     1. Go to Service Accounts settings: https://console.cloud.google.com/iam-admin/serviceaccounts
     1. Click `Create service account` button
@@ -34,7 +40,8 @@ Docker need for deployment machine
 ## Creating Infrastructure
 
 1. Use `docker-compose run --rm terraform` to enter terraform environment.
-1.
+1. Type `terraform init` to initialize state files.
+1. Type `terraform apply` to see plan, then type `yes` and confirm with enter to create infrastructure.
 
 
 # Local development
