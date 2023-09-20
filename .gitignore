@@ -1,0 +1,4 @@
+cert.json
+.env
+IaC/.terraform.lock.hcl
+IaC/.terraform/providers/registry.terraform.io/hashicorp/google/4.83.0/linux_amd64/terraform-provider-google_v4.83.0_x5

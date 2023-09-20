@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  terraform:
+    image: hashicorp/terraform:1.4.7
+    entrypoint: sh
+    env_file:
+      - .env
+    working_dir: /opt/app/src
+    environment:
+      - GOOGLE_CREDENTIALS=/cert.json
+    volumes:
+      - ./IaC/:/opt/app/src:delegated
+      - ./cert.json:/cert.json
