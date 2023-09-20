@@ -35,6 +35,7 @@ resource "google_iam_workload_identity_pool_provider" "github" {
   attribute_mapping = {
     "google.subject"       = "assertion.sub"
     "attribute.actor"      = "assertion.actor"
+    "attribute.aud"        = "assertion.aud"
     "attribute.repository" = "assertion.repository"
   }
   oidc {
@@ -47,6 +48,6 @@ resource "google_service_account_iam_binding" "repositories" {
   service_account_id = google_service_account.github.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/${local.organization}/${local.repository_name}"
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/attribute.repository/${local.repository_name}"
   ]
 }
