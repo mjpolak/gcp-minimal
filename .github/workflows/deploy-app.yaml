@@ -25,7 +25,7 @@ jobs:
           service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
-      - name: 'Docker auth'
+      - name: 'Deploy image'
         run: |-
           gcloud run deploy birthday \
               --project ${{ env.PROJECT_ID }} \

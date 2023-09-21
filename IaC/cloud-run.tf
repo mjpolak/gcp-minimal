@@ -6,12 +6,22 @@ resource "google_cloud_run_v2_service" "birthday" {
   template {
     containers {
       image = "gcr.io/cloudrun/placeholder"
+      ports {
+        container_port = 3000
+      }
     }
 
     scaling {
       max_instance_count = 1
       min_instance_count = 0
     }
+  }
+  lifecycle {
+    ignore_changes = [
+      client,
+      client_version,
+      template[0].containers[0].image
+     ]
   }
   depends_on = [google_project_service.cloudrun]
 }
