@@ -28,11 +28,11 @@ jobs:
       - name: 'Run tests'  
         run: |-
           cd app/ &&
-          run test
+          npm run test
       - name: 'Run lint'  
         run: |-
           cd app/ &&
-          run lint
+          npm run lint
       - name: 'Google auth'
         id: 'auth'
         uses: 'google-github-actions/auth@v1'
