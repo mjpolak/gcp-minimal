@@ -1,8 +1,8 @@
 name: Push to main
 on: 
   push:
-    branches:
-      - main
+    tags:        
+      - 'v*-dev'
 env:
   APP: "birthday"
   GAR_LOCATION: "europe-central2"
@@ -27,11 +27,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
       - name: 'Docker auth'
         run: |-
-          gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
-      - name: Build and push
-        run: |
-          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }}" ./app && \
-          docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }}"
-      
-
-      
+          gcloud run deploy birthday \
+              --project ${{ env.PROJECT_ID }} \
+              --image ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }} \
+              --region ${{ env.GAR_LOCATION }}
