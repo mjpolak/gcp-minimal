@@ -1,9 +1,9 @@
 # What is it
 
-It is minimal viable REST application project deployeded on Google Cloud Platform (GCP).
+It is minimal viable REST application project deployable on Google Cloud Platform (GCP).
 ## Assumptions
 
-- Deployable on GCP, and using Free Tier services.
+- Deployable on GCP, and using only [GCP's Free Tier](https://cloud.google.com/free) services.
 - Terraform used for managing infrastructure.
 - Simplified CI/CD workflows on GitHub Actions.
 - Only one environment is created (no staging, prod etc.), but can be easily extended.
@@ -14,17 +14,17 @@ It is minimal viable REST application project deployeded on Google Cloud Platfor
 ![Architecture](docs/images/architecture.drawio.svg)
 
 Cloud Run service is used as a host of application,
-Firestore service is used as a datasotre.
+Firestore service is used as a datastore.
 
 # Deployment pipeline
 
 ![Pipeline](docs/images/deployment.drawio.svg)
 
-There are two workflows in solution, responsible for  building and deployment.
+There are two workflows in solution, one is responsible for  building and other for  deployment.
 
-**Building process is triggered by new pushes to repository, it:**
+**Building process is triggered by new commits pushed into repository, it:**
 - Executes tests and linting.
-- Builds Production docker image.
+- Builds production docker image.
 - Pushes image to Artifact Registry, images are tagged with SHA of commit.
 
 **Deployment process is triggered by pushing tag in form `v*-dev`**.
@@ -33,7 +33,7 @@ Process deploys to Cloud Run image with give commit's SHA.
 
 # Preparing project
 
-Follow next steps to deploy solution on own GCP's project and run it locally.
+Follow next steps to deploy solution on own GCP's project or run it locally.
 ## Setup project
 
  1. Create project on https://console.cloud.google.com/projectcreate it need to be unique across GCP
@@ -53,7 +53,7 @@ Follow next steps to deploy solution on own GCP's project and run it locally.
     1. Click newly created account on list.
     1. Switch to "Keys" Tab.
     1. Click on "Add key" and select "Create new Key", pick `JSON` type on modal.
-    1. Your certificate should be downloaded.
+    1. Certificate should be downloaded.
 1. Rename certificate to `cert.json` and move it to root directory of project.
 
 ## Creating Infrastructure
@@ -79,7 +79,7 @@ Below secrets are needed:
 - `WIF_SERVICE_ACCOUNT`  value of terraform output `wif_service_account_email` from previous section
 
 # Running local
-Before running app localy you need to [Setup Project](## Setup project).
+Before running app localy you need to [Setup Project](##setup-project).
 
 Use command:
 ```
@@ -88,7 +88,7 @@ docker-compose up app
 Application will be available on `localhost:8080`
 # Local development
 
-Before running app localy you need to [Setup Project](## Setup project).
+Before running app localy you need to [Setup Project](##setup-project).
 
 Navigate to `app/` directory.
 ```
