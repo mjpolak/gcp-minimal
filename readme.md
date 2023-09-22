@@ -79,7 +79,7 @@ Below secrets are needed:
 - `WIF_SERVICE_ACCOUNT`  value of terraform output `wif_service_account_email` from previous section
 
 # Running local
-Before running app localy you need to [Setup Project](##setup-project).
+Before running app localy you need to [Setup Project](#setup-project).
 
 Use command:
 ```
@@ -88,7 +88,7 @@ docker-compose up app
 Application will be available on `localhost:8080`
 # Local development
 
-Before running app localy you need to [Setup Project](##setup-project).
+Before running app localy you need to [Setup Project](#setup-project).
 
 Navigate to `app/` directory.
 ```
